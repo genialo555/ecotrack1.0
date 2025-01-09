@@ -1,0 +1,79 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+/.nyc_output
+/cypress/videos/
+/cypress/screenshots/
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+/dist
+/storybook-static
+
+# misc
+.DS_Store
+*.pem
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+.project
+.settings/
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+debug.log
+
+# local env files
+.env
+.env*.local
+.env.development
+.env.test
+.env.production
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# cache
+.cache/
+.eslintcache
+.stylelintcache
+
+# PWA files
+**/public/sw.js
+**/public/workbox-*.js
+**/public/worker-*.js
+**/public/sw.js.map
+**/public/workbox-*.js.map
+**/public/worker-*.js.map
+
+# Windsurf specific
+.windsurf/
+.windsurf-*
+*.windsurf.json
+.windsurf.log
+.windsurf-cache/
+.windsurf-temp/
+.windsurfrules
