@@ -1,0 +1,218 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+  }
+
+  body {
+    overflow-y: auto;
+    scroll-padding-top: 4rem;
+  }
+
+  section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    scroll-margin: 0.5rem;
+  }
+
+  section:first-of-type {
+    scroll-snap-align: start;
+    scroll-margin: 0;
+  }
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #171717;
+    --foreground: #ffffff;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer components {
+  .btn-gradient {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-gradient::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, #f97316 0%, #fb923c 50%, #fdba74 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+  
+  .btn-gradient:hover::before {
+    opacity: 1;
+  }
+
+  .group:hover .group-hover\:fill-gradient {
+    fill: url(#gradient);
+    stroke: url(#gradient);
+  }
+}
+
+@layer utilities {
+  .fill-gradient {
+    fill: url(#gradient);
+    stroke: url(#gradient);
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Custom scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+  }
+
+  .dark ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .dark ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 20px;
+  }
+}
+
+/* Media Queries pour la page d'accueil */
+@media screen and (max-width: 640px) {
+  .snap-container > div {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+}
+
+@media screen and (min-width: 641px) and (max-width: 1024px) {
+  .snap-container > div {
+    width: 90% !important;
+    margin: 0 auto !important;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .snap-container > div {
+    width: 95% !important;
+    max-width: 1612px !important;
+    margin: 0 auto !important;
+  }
+}
+
+/* Media Queries for Stats Section */
+@media screen and (max-width: 768px) {
+  .stats-card {
+    @apply px-6 py-8 mx-4;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .stats-title {
+    @apply text-2xl font-bold mb-2;
+  }
+
+  .stats-value {
+    @apply text-3xl font-bold mt-4;
+  }
+
+  .stats-description {
+    @apply text-base opacity-80;
+  }
+
+  .stats-grid {
+    @apply space-y-6;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile-only styles for Stats Section */
+@media screen and (max-width: 768px) {
+  .stats-grid-mobile {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    height: auto !important;
+    gap: 2rem !important;
+    padding: 1rem !important;
+  }
+
+  .stats-grid-mobile > div {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 300px !important;
+    padding: 2rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .stats-grid-mobile h3 {
+    font-size: 2rem !important;
+  }
+
+  .stats-grid-mobile p {
+    font-size: 1rem !important;
+  }
+
+  .stats-grid-mobile .text-7xl {
+    font-size: 3rem !important;
+  }
+}

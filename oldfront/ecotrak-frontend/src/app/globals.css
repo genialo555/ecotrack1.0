@@ -1,0 +1,395 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Base theme - Light mode defaults */
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+    
+    /* Chart Theme Colors - Light Mode */
+    --chart-theme: {
+      /* Distance */
+      --chart-distance-base: 199 89% 48%;
+      --chart-distance-increase: 142 72% 29%;
+      --chart-distance-decrease: 24 95% 53%;
+      --chart-distance-text: 0 0% 100%;
+      
+      /* CO2 */
+      --chart-co2-base: 345 82% 61%;
+      --chart-co2-increase: 0 84% 60%;
+      --chart-co2-decrease: 142 72% 29%;
+      --chart-co2-text: 0 0% 100%;
+      
+      /* Time */
+      --chart-time-base: 226 100% 71%;
+      --chart-time-increase: 271 91% 65%;
+      --chart-time-decrease: 45 93% 47%;
+      --chart-time-text: 0 0% 100%;
+      
+      /* Chart UI */
+      --chart-grid: 215 16% 47%;
+      --chart-tooltip-bg: 0 0% 100%;
+      --chart-tooltip-border: 215 16% 47%;
+      --chart-tooltip-text: 222 47% 11%;
+    }
+
+    /* Chart Colors */
+    --chart-grid: 240 5% 64%;
+    --chart-tooltip-bg: 0 0% 100%;
+    
+    /* Distance Chart */
+    --chart-distance-base: 200 95% 39%;
+    --chart-distance-increase: 142 76% 36%;
+    --chart-distance-decrease: 0 84% 60%;
+
+    /* CO2 Chart */
+    --chart-co2-base: 142 76% 36%;
+    --chart-co2-increase: 0 84% 60%;
+    --chart-co2-decrease: 142 76% 36%;
+
+    /* Time Chart */
+    --chart-time-base: 48 96% 53%;
+    --chart-time-increase: 0 84% 60%;
+    --chart-time-decrease: 142 76% 36%;
+
+    /* Pie Chart */
+    --chart-pie-1: 217 91% 60%;
+    --chart-pie-2: 142 76% 36%;
+    --chart-pie-3: 48 96% 53%;
+    --chart-pie-4: 0 84% 60%;
+    --chart-pie-5: 271 91% 65%;
+
+    /* UI Colors */
+    --muted: 215 16% 47%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222 47% 11%;
+    --border: 214 32% 91%;
+  }
+
+  .dark {
+    /* Base theme - Dark mode overrides */
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    
+    /* Chart Theme Colors - Dark Mode */
+    --chart-theme: {
+      /* Distance */
+      --chart-distance-base: 199 89% 58%;
+      --chart-distance-increase: 142 72% 39%;
+      --chart-distance-decrease: 24 95% 63%;
+      --chart-distance-text: 0 0% 100%;
+      
+      /* CO2 */
+      --chart-co2-base: 345 82% 71%;
+      --chart-co2-increase: 0 84% 70%;
+      --chart-co2-decrease: 142 72% 39%;
+      --chart-co2-text: 0 0% 100%;
+      
+      /* Time */
+      --chart-time-base: 226 100% 81%;
+      --chart-time-increase: 271 91% 75%;
+      --chart-time-decrease: 45 93% 57%;
+      --chart-time-text: 0 0% 100%;
+      
+      /* Chart UI */
+      --chart-grid: 215 25% 27%;
+      --chart-tooltip-bg: 222 47% 11%;
+      --chart-tooltip-border: 215 25% 27%;
+      --chart-tooltip-text: 210 40% 98%;
+    }
+
+    /* Chart Colors */
+    --chart-grid: 240 5% 26%;
+    --chart-tooltip-bg: 240 10% 3.9%;
+    
+    /* Distance Chart */
+    --chart-distance-base: 199 89% 48%;
+    --chart-distance-increase: 142 71% 45%;
+    --chart-distance-decrease: 0 72% 51%;
+
+    /* CO2 Chart */
+    --chart-co2-base: 142 71% 45%;
+    --chart-co2-increase: 0 72% 51%;
+    --chart-co2-decrease: 142 71% 45%;
+
+    /* Time Chart */
+    --chart-time-base: 48 96% 53%;
+    --chart-time-increase: 0 72% 51%;
+    --chart-time-decrease: 142 71% 45%;
+
+    /* Pie Chart */
+    --chart-pie-1: 217 91% 60%;
+    --chart-pie-2: 142 71% 45%;
+    --chart-pie-3: 48 96% 53%;
+    --chart-pie-4: 0 72% 51%;
+    --chart-pie-5: 271 81% 55%;
+
+    /* UI Colors */
+    --muted: 213 27% 84%;
+    --muted-foreground: 213 27% 84%;
+    --accent: 217 33% 17%;
+    --accent-foreground: 210 40% 98%;
+    --border: 215 25% 27%;
+  }
+}
+
+@layer components {
+  .chart-tooltip {
+    @apply rounded-lg border bg-[hsl(var(--chart-tooltip-bg))] p-2 shadow-sm 
+    border-[hsl(var(--chart-tooltip-border))] text-[hsl(var(--chart-tooltip-text))];
+  }
+
+  .chart-control-button {
+    @apply flex items-center gap-2 px-4 py-2 text-sm font-medium transition-colors;
+  }
+
+  .chart-control-button-inactive {
+    @apply hover:bg-accent text-muted-foreground;
+  }
+
+  /* Card Variants */
+  .card-stats {
+    @apply bg-background rounded-lg p-6 shadow-card;
+  }
+
+  .card-list {
+    @apply bg-background rounded-lg p-4 shadow-card;
+  }
+
+  .card-grid {
+    @apply bg-background rounded-lg p-6 shadow-card;
+  }
+
+  /* Card Styles */
+  .card {
+    @apply rounded-lg border border-subtle p-4;
+  }
+
+  .card-body {
+    @apply space-y-4;
+  }
+
+  /* Typography */
+  .stats-label {
+    @apply text-sm font-medium text-muted;
+  }
+
+  .stats-value {
+    @apply text-[1.875rem] leading-9 font-bold;
+  }
+
+  /* Badge Variants */
+  .badge {
+    @apply px-2 py-1 rounded-md text-sm inline-flex items-center;
+  }
+
+  .badge-success {
+    @apply bg-success/10 text-success;
+  }
+
+  .badge-warning {
+    @apply bg-warning/10 text-warning;
+  }
+
+  .badge-error {
+    @apply bg-error/10 text-error;
+  }
+
+  /* Icon System */
+  .icon {
+    @apply w-5 h-5 inline-block;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    background-color: currentColor;
+  }
+
+  /* Stats Icons */
+  .icon-route {
+    mask-image: url('/icons/route.svg');
+  }
+
+  .icon-co2 {
+    mask-image: url('/icons/co2.svg');
+  }
+
+  .icon-time {
+    mask-image: url('/icons/time.svg');
+  }
+
+  .icon-journey {
+    mask-image: url('/icons/journey.svg');
+  }
+
+  .icon-chart {
+    mask-image: url('/icons/chart.svg');
+  }
+
+  .icon-map-pin {
+    mask-image: url('/icons/map-pin.svg');
+  }
+
+  .icon-chevron-right {
+    mask-image: url('/icons/chevron-right.svg');
+  }
+
+  .icon-calendar {
+    mask-image: url('/icons/calendar.svg');
+  }
+
+  .icon-edit {
+    mask-image: url('/icons/edit.svg');
+  }
+
+  .icon-trash {
+    mask-image: url('/icons/trash.svg');
+  }
+
+  .icon-clock {
+    mask-image: url('/icons/clock.svg');
+  }
+
+  /* Transport Mode Icons */
+  .icon-walking {
+    mask-image: url('/icons/transport/walking.svg');
+  }
+
+  .icon-cycling {
+    mask-image: url('/icons/transport/cycling.svg');
+  }
+
+  .icon-car {
+    mask-image: url('/icons/transport/car.svg');
+  }
+
+  .icon-bus {
+    mask-image: url('/icons/transport/bus.svg');
+  }
+
+  .icon-train {
+    mask-image: url('/icons/transport/train.svg');
+  }
+
+  /* Additional Icon Definitions */
+  .icon-plus {
+    mask-image: url('/icons/plus.svg');
+  }
+
+  .icon-settings {
+    mask-image: url('/icons/settings.svg');
+  }
+
+  .icon-user {
+    mask-image: url('/icons/user.svg');
+  }
+
+  .icon-dashboard {
+    mask-image: url('/icons/dashboard.svg');
+  }
+
+  .icon-report {
+    mask-image: url('/icons/report.svg');
+  }
+
+  .icon-air {
+    mask-image: url('/icons/air.svg');
+  }
+
+  /* Additional Navigation Icons */
+  .icon-menu {
+    mask-image: url('/icons/menu.svg');
+  }
+
+  .icon-logout {
+    mask-image: url('/icons/logout.svg');
+  }
+
+  /* Table Icons */
+  .icon-chevron-up {
+    mask-image: url('/icons/chevron-up.svg');
+  }
+
+  .icon-chevron-down {
+    mask-image: url('/icons/chevron-down.svg');
+  }
+
+  .icon-edit {
+    mask-image: url('/icons/edit.svg');
+  }
+
+  .icon-trash {
+    mask-image: url('/icons/trash.svg');
+  }
+
+  /* Navigation Styles */
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-lg font-medium transition-colors;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary/90;
+  }
+
+  .btn-ghost {
+    @apply text-muted bg-transparent hover:bg-subtle;
+  }
+
+  /* Button Group Styles */
+  .btn-group {
+    @apply inline-flex rounded-lg overflow-hidden border border-subtle;
+  }
+
+  .btn-group > button {
+    @apply px-4 py-2 text-sm transition-colors;
+  }
+
+  .btn-group > button:not(:last-child) {
+    @apply border-r border-subtle;
+  }
+
+  .btn-group > button.active {
+    @apply bg-primary text-white;
+  }
+
+  .btn-group > button:not(.active) {
+    @apply text-muted bg-transparent hover:bg-subtle;
+  }
+
+  /* Table Styles */
+  .table-container {
+    @apply overflow-x-auto rounded-lg border border-subtle;
+  }
+
+  .table-header {
+    @apply py-3 px-4 text-left font-medium text-muted;
+  }
+
+  .table-header-button {
+    @apply flex items-center gap-1 hover:text-primary transition-colors;
+  }
+
+  .table-cell {
+    @apply py-3 px-4;
+  }
+
+  .table-row {
+    @apply border-b border-subtle hover:bg-subtle/50 transition-colors;
+  }
+
+  /* Layout Styles */
+  .pl-sidebar {
+    padding-left: theme('spacing.sidebar');
+  }
+
+  .pt-header {
+    padding-top: theme('spacing.header');
+  }
+
+  /* Container */
+  .container {
+    @apply mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
+  }
+}
