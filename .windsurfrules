@@ -1,0 +1,86 @@
+. Project Context
+    Project Name: EcoTrackis an application designed to monitor and manage environmental data (e.g., carbon footprint, energy consumption). We strive for a uniform, maintainable, and scalable UI by leveraging Tailwind as our primary styling solution.
+Please avoid any raw CSS or file duplication—our main goal is to centralize styling and reuse existing components or utilities.
+    Primary Tech Stack: React (or Next.js) + Tailwind
+    Key Folders:
+        src/components/common/ – Reusable components (e.g., Button, Card, Modal).
+        src/components/dashboard/ – Dashboard-specific components.
+        src/components/layout/ – Layout components (e.g., Header, Footer).
+        src/styles/ – Global styles (e.g., globals.css with @tailwind base;, @tailwind components;, @tailwind utilities;).
+        src/lib/ – Helper functions, utilities, etc.
+
+Before creating anything new, always check if a similar component or style already exists.
+3. Guiding Principles
+
+    No Raw CSS
+        Don’t create standalone .css files for individual components.
+        Do use Tailwind utility classes or @apply inside a proper @layer components for shared styles.
+
+    No Duplicate Components
+        Don’t reinvent the wheel if there’s already a Button or Card in common.
+        Do extend the existing component by adding props (e.g., variant, size).
+
+    Light/Dark Mode Consistency
+        Don’t override dark mode with manual CSS (e.g., .dark-mode .my-section { ... }).
+        Do rely on Tailwind’s dark: variants (dark:bg-gray-800, dark:text-white, etc.) or your declared CSS variables in @layer base.
+
+    Organized Class Usage
+        Don’t write 20 classes in one line without grouping or meaning.
+        Do group them by layout, typography, color, state (hover/focus), and responsive breakpoints.
+
+    Variables in @layer base
+        Don’t define random CSS variables across multiple files.
+        Do keep them in one place (e.g., @layer base { :root { --color-primary: ... } }) and reference them via hsl(var(--color-primary)) inside tailwind.config.js.
+
+    Check Existing Structure Before Creating Files
+        Don’t create a new file in an arbitrary location if a suitable folder or component type already exists.
+        Do follow the folder naming conventions (common/, dashboard/, layout/) to keep the codebase organized.
+
+4. “Don’t Do This / Do This Instead” Examples
+4.1 Styling a Button
+
+    ❌ Don’t Do This
+
+// Inline or raw CSS
+<button style={{ backgroundColor: '#123456', color: '#fff' }}>
+  Click Me
+</button>
+
+✅ Do This Instead
+
+    // Tailwind classes (or a reusable Button component)
+    <button className="bg-primary text-white px-4 py-2 rounded hover:bg-primary/80 transition-colors duration-200">
+      Click Me
+    </button>
+
+4.2 Creating a New Button File
+
+    ❌ Don’t Do This
+
+src/components/dashboard/
+└── NewButton.tsx   // A duplication of an existing button
+
+5. Additional Context & Tips
+New Note: Whenever possible, prefer using DaisyUI for reusable styled components—it’s built on Tailwind and helps maintain consistency across the application.
+    Token & Chunking
+        If you’re working with an AI tool that has token limits, break down requests into chunks or review each 3000 tokens to keep the conversation manageable.
+        Summaries or partial code reviews can help when dealing with large files.
+    Performance & Readability
+        Reuse classes and variables to avoid repeated definitions.
+        Keep your components small and dedicated to a single responsibility (e.g., Card, Button, Modal).
+    Naming Conventions
+        Use descriptive prop names and meaningful class names.
+        For example, use variant="primary" instead of type="1" when customizing a button.
+    Testing & Documentation
+        Whenever you introduce or update a component, update any relevant docs or README.
+        If you add new props or variants, ensure that other developers can quickly understand how to use them.
+    Collaboration & Consistency
+        Always open a pull request or ask for code reviews when adding major changes.
+        If you find yourself rewriting the same chunk of Tailwind classes in multiple components, factor them out into either a shared @apply style or a dedicated utility class in @layer components.
+    Centralize configuration (Tailwind, PostCSS, etc.) in the project root.
+    Stick to the existing folder structure (common/, layout/, dashboard/) to avoid duplication.
+    Use Tailwind classes (or @apply) for everything: no raw CSS if possible.
+    Manage theme (light/dark) through Tailwind’s built-in features (dark:) or consistent variables.
+    Review each change for consistency with existing components, naming, and style patterns.
+
+

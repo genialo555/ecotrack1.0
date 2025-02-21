@@ -1,0 +1,5 @@
+/* Import base styles */
+@import '../app/globals.css';
+
+/* Import DaisyUI */
+@import 'daisyui/dist/full.css';

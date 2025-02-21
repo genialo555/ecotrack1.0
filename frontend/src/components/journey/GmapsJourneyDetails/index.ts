@@ -1,0 +1,1 @@
+export { GmapsJourneyDetails } from './GmapsJourneyDetails';
