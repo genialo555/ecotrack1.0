@@ -1,0 +1,30 @@
+FROM postgres:15-alpine
+
+# Variables d'environnement par défaut
+ENV POSTGRES_DB=ecotrack
+ENV POSTGRES_USER=ecotrack_user
+ENV POSTGRES_PASSWORD=1994
+
+# Copie des scripts d'initialisation
+COPY ./src/sql/init.sql /docker-entrypoint-initdb.d/
+
+# Exposition du port PostgreSQL
+EXPOSE 5432
+
+# Configuration optimisée pour Cloud Run
+ENV PGDATA=/var/lib/postgresql/data/pgdata
+ENV POSTGRES_HOST_AUTH_METHOD=md5
+
+# Optimisations de performance pour Cloud Run
+RUN echo "max_connections = 100" >> /usr/local/share/postgresql/postgresql.conf
+RUN echo "shared_buffers = 128MB" >> /usr/local/share/postgresql/postgresql.conf
+RUN echo "effective_cache_size = 384MB" >> /usr/local/share/postgresql/postgresql.conf
+RUN echo "maintenance_work_mem = 64MB" >> /usr/local/share/postgresql/postgresql.conf
+RUN echo "checkpoint_completion_target = 0.9" >> /usr/local/share/postgresql/postgresql.conf
+RUN echo "wal_buffers = 4MB" >> /usr/local/share/postgresql/postgresql.conf
+RUN echo "default_statistics_target = 100" >> /usr/local/share/postgresql/postgresql.conf
+RUN echo "random_page_cost = 1.1" >> /usr/local/share/postgresql/postgresql.conf
+RUN echo "effective_io_concurrency = 200" >> /usr/local/share/postgresql/postgresql.conf
+RUN echo "work_mem = 4MB" >> /usr/local/share/postgresql/postgresql.conf
+RUN echo "min_wal_size = 1GB" >> /usr/local/share/postgresql/postgresql.conf
+RUN echo "max_wal_size = 4GB" >> /usr/local/share/postgresql/postgresql.conf 
